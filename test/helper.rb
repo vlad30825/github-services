@@ -52,7 +52,6 @@ module Service::HttpTestMethods
     @stubs = Faraday::Adapter::Test::Stubs.new
   end
 
-
   def service(event_or_data, data, payload = nil)
     super(service_class, event_or_data, data, payload)
   end

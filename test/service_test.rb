@@ -39,10 +39,10 @@ class ServiceTest < Service::TestCase
       [200, {'x-test' => 'booya'}, 'ok']
     end
 
-    @service.http.post '/'
+    @service.http.post 'http://example.com/'
 
     @service.http_calls.each do |env|
-      assert_equal '/', env[:request][:url]
+      assert_equal 'http://example.com/', env[:request][:url]
       assert_equal '0', env[:request][:headers]['Content-Length']
       assert_equal 200, env[:response][:status]
       assert_equal 'booya', env[:response][:headers]['x-test']

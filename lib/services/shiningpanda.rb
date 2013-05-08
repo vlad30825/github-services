@@ -21,11 +21,12 @@ class Service::ShiningPanda < Service
     end
     branch = payload['ref'].to_s.split('/').last
     if branches.empty? || branches.include?(branch)
-      Faraday::Utils.parse_query(data['parameters']).each do |key, values|
+      parsed = Faraday::Utils.parse_query(data['parameters'])
+      parsed.each do |key, values|
         if !values.is_a?(String) and values.length > 1
           raise_config_error "Only one parameter value allowed for " + key
         end
-      end
+      end if parsed
       query[:token] = token
       query[:cause] = "Triggered by a push of #{payload['pusher']['name']} to #{branch} (commit: #{payload['after']})"
       http_post url, query
@@ -33,7 +34,7 @@ class Service::ShiningPanda < Service
   end
 
   def cleanup(key)
-    ( data.has_key?(key) and data[key] != nil ) ? data[key] : ''
+    data[key].to_s
   end
 
   def workspace

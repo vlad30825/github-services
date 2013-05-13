@@ -647,9 +647,10 @@ class Service
       end
       options[:ssl][:ca_file] ||= ca_file
 
+      adapter_args = Array(options.delete(:adapter) || config[:adapter])
       Faraday.new(options) do |b|
         b.request(:url_encoded)
-        b.adapter(*Array(options[:adapter] || config[:adapter]))
+        b.adapter(*adapter_args)
         b.use(HttpReporter, self)
       end
     end
@@ -787,17 +788,18 @@ class Service
   end
 
   def reportable_http_env(env, time)
+    adapter_value = env.respond_to?(:adapter) ? env.adapter : nil
     {
       :request => {
-        :url => env[:url].to_s,
-        :headers => env[:request_headers]
+        :url => env.url.to_s,
+        :headers => env.request_headers
       }, :response => {
-        :status => env[:status],
-        :headers => env[:response_headers],
-        :body => env[:body].to_s,
+        :status => env.status,
+        :headers => env.response_headers,
+        :body => env.body.to_s,
         :duration => "%.02fs" % [Time.now - time]
       },
-      :adapter => env[:adapter]
+      :adapter => adapter_value
     }
   end
 

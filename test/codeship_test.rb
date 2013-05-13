@@ -32,7 +32,7 @@ class CodeshipTest < Service::TestCase
 private
 
   def random_name letters=10
-    [*('a'..'z')].shuffle[0..letters-1]
+    [*('a'..'z')].shuffle[0..letters-1].join
   end
 
   def service(*args)

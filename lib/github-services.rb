@@ -6,10 +6,14 @@ require 'socket'
 require 'xmlrpc/client'
 require 'openssl'
 require 'cgi'
-#~ require 'date' # This is needed by the CIA service in ruby 1.8.7 or later
+require 'date'
+#
 
 # bundled
 require 'addressable/uri'
+require 'faraday'
+require 'faraday/autoload'
+require 'ostruct'
 require 'mime/types'
 require 'xmlsimple'
 require 'active_resource'
@@ -34,9 +38,6 @@ require 'basecamp'
 require 'rubyforge'
 require 'softlayer/messaging'
 
-require 'addressable/uri'
-require 'faraday'
-require 'ostruct'
 require File.expand_path("../service/structs", __FILE__)
 require File.expand_path("../service/http_helper", __FILE__)
 

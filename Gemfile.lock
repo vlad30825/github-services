@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    github-services (1.0.0.d5f9dc1)
+    github-services (1.0.0.5d572c9)
       activeresource (~> 3.0.0)
       addressable (~> 2.2.7)
       aws-sdk (~> 1.8.0)
@@ -25,14 +25,14 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (3.0.10)
-      activesupport (= 3.0.10)
+    activemodel (3.0.5)
+      activesupport (= 3.0.5)
       builder (~> 2.1.2)
-      i18n (~> 0.5.0)
-    activeresource (3.0.10)
-      activemodel (= 3.0.10)
-      activesupport (= 3.0.10)
-    activesupport (3.0.10)
+      i18n (~> 0.4)
+    activeresource (3.0.5)
+      activemodel (= 3.0.5)
+      activesupport (= 3.0.5)
+    activesupport (3.0.5)
     addressable (2.2.8)
     aws-sdk (1.8.5)
       json (~> 1.4)
